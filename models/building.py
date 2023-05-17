@@ -7,19 +7,19 @@ class Building:
 
 class Production(Building):
     def __init__(self):
-        super().__init__(285_000_000, 2, 250_000_000)
+        super().__init__(175_000_000, 2, 130_000_000)
 
 
 class Assembly(Building):
     def __init__(self):
-        super().__init__(285_000_000, 3, 250_000_000)
+        super().__init__(185_000_000, 3, 160_000_000)
 
 
 class Recycle(Building):
     def __init__(self):
-        super().__init__(170_000_000, 3, 86_000_000)
+        super().__init__(105_000_000, 1, 55_000_000)
 
 
 class Inventory(Building):
     def __init__(self):
-        super().__init__(0, 5_000_000, 480_000_000)
+        super().__init__(0, 20_000_000, 645_000_000)

@@ -34,6 +34,12 @@ class Product:
             res += key.value.max_price * value
         return res
 
+    def get_mean_price(self):
+        res = 0
+        for key, value in self.dependencies.items():
+            res += ((key.value.max_price + key.value.min_price) / 2) * value
+        return res
+
     def get_min_price(self):
         res = 0
         for key, value in self.dependencies.items():

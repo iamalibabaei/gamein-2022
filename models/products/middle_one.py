@@ -9,11 +9,11 @@ class MiddleLevelOne(Product):
 
 
 class MiddleLevelOneList(Enum):
-    Modem2G = MiddleLevelOne("Modem 2G", 80, 1700, 3200, {RawMaterialList.Aluminium: 15, RawMaterialList.Copper: 10, RawMaterialList.Plastic: 30}, 100, 173031, 214)
-    DisplayKeypad = MiddleLevelOne("DisplayKeypad", 328, 3300, 5600, {RawMaterialList.Aluminium: 30, RawMaterialList.Glass: 150, RawMaterialList.Silicon: 50}, 80, 243682, 461)
-    PhoneBattery = MiddleLevelOne("PhoneBattery", 240, 1600, 2500, {RawMaterialList.Cobalt: 18, RawMaterialList.Lithium: 12, }, 240, 399933, 243)
-    PhoneKeypad = MiddleLevelOne("PhoneKeypad", 592, 4700, 7300, {RawMaterialList.Aluminium: 70, RawMaterialList.Plastic: 300}, 80, 404945, 738)
-    Camera = MiddleLevelOne("Camera", 224, 2200, 3300, {RawMaterialList.Copper: 20, RawMaterialList.Glass: 40, RawMaterialList.Plastic: 90}, 250, 641719, 336)
-    Modem3G = MiddleLevelOne("Modem3G", 100, 2300, 4300, {RawMaterialList.Aluminium: 20, RawMaterialList.Copper: 15, RawMaterialList.Plastic: 35}, 100, 218915, 295)
-    PhoneFrame = MiddleLevelOne("PhoneFrame", 272, 2600, 3700, {RawMaterialList.Aluminium: 50, RawMaterialList.Plastic: 120, }, 310 ,1026669, 442)
-    TouchDisplay = MiddleLevelOne("TouchDisplay", 992, 8500, 10200, {RawMaterialList.Silicon: 160, RawMaterialList.Glass: 450, RawMaterialList.Aluminium: 90}, 290, 2885592, 1440)
+    Modem2G = MiddleLevelOne("Modem 2G", 80, 780, 1020, {RawMaterialList.Aluminium: 15, RawMaterialList.Copper: 10, RawMaterialList.Plastic: 30}, 100, 50_000, 50)
+    DisplayKeypad = MiddleLevelOne("DisplayKeypad", 328, 1260, 1640, {RawMaterialList.Aluminium: 30, RawMaterialList.Glass: 150, RawMaterialList.Silicon: 50}, 80, 70_000, 93)
+    PhoneBattery = MiddleLevelOne("PhoneBattery", 240, 660, 860, {RawMaterialList.Cobalt: 18, RawMaterialList.Lithium: 12, }, 210, 190_000, 61)
+    PhoneKeypad = MiddleLevelOne("PhoneKeypad", 592, 1730, 2240, {RawMaterialList.Aluminium: 70, RawMaterialList.Plastic: 300}, 80, 200_000, 174)
+    Camera = MiddleLevelOne("Camera", 224, 670, 870, {RawMaterialList.Copper: 20, RawMaterialList.Glass: 40, RawMaterialList.Plastic: 90}, 350, 280_000, 76)
+    Modem3G = MiddleLevelOne("Modem3G", 100, 1120, 1460, {RawMaterialList.Aluminium: 20, RawMaterialList.Copper: 15, RawMaterialList.Plastic: 35}, 90, 90_000, 68)
+    PhoneFrame = MiddleLevelOne("PhoneFrame", 272, 910, 1190, {RawMaterialList.Aluminium: 50, RawMaterialList.Plastic: 120, }, 240, 340_000, 102)
+    TouchDisplay = MiddleLevelOne("TouchDisplay", 992, 2060, 2670, {RawMaterialList.Silicon: 160, RawMaterialList.Glass: 450, RawMaterialList.Aluminium: 90}, 230, 1_020_000, 291)
