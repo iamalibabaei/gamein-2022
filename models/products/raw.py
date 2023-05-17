@@ -52,21 +52,21 @@ class Product:
 
 
 class RawMaterial(Product):
-    def __init__(self, name, volume, min_price, max_price):
-        super().__init__(name, volume, min_price, max_price)
+    def __init__(self, name, volume, min_price):
+        super().__init__(name, volume, min_price, min_price)
 
 
 class RawMaterialList(Enum):
-    Aluminium = RawMaterial("Aluminium", 2, 18, 18)
-    Chips = RawMaterial("Chips", 30, 425, 425)
-    Cobalt = RawMaterial("Cobalt", 10, 40, 40)
-    Copper = RawMaterial("Copper", 1, 30, 30)
-    Glass = RawMaterial("Glass", 2, 6, 6)
-    Lithium = RawMaterial("Lithium", 10, 8, 8)
-    Microphone = RawMaterial("Microphone", 15, 200, 200)
-    Plastic = RawMaterial("Plastic", 2, 4, 4)
-    Ports = RawMaterial("Ports", 50, 150, 150)
-    Processors = RawMaterial("Processors", 10, 210, 210)
-    Silicon = RawMaterial("Silicon", 1, 3, 3)
-    Speaker = RawMaterial("Speaker", 3, 100, 100)
-    VibrationMotor = RawMaterial("VibrationMotor", 50, 625, 625)
+    Aluminium = RawMaterial("Aluminium", 2, 4, )
+    Chips = RawMaterial("Chips", 30, 100, )
+    Cobalt = RawMaterial("Cobalt", 10, 10, )
+    Copper = RawMaterial("Copper", 1, 7, )
+    Glass = RawMaterial("Glass", 2, 1, )
+    Lithium = RawMaterial("Lithium", 10, 2, )
+    Microphone = RawMaterial("Microphone", 15, 50, )
+    Plastic = RawMaterial("Plastic", 2, 1,)
+    Ports = RawMaterial("Ports", 50, 40, )
+    Processors = RawMaterial("Processors", 10, 50, )
+    Silicon = RawMaterial("Silicon", 1, 1,)
+    Speaker = RawMaterial("Speaker", 3, 25)
+    VibrationMotor = RawMaterial("VibrationMotor", 50, 150)
