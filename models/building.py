@@ -21,5 +21,7 @@ class Recycle(Building):
 
 
 class Inventory(Building):
+    VARIABLE = 0.02
+
     def __init__(self):
         super().__init__(0, 20_000_000, 645_000_000)

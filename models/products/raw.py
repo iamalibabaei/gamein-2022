@@ -46,6 +46,10 @@ class Product:
             res += key.value.min_price * value
         return res
 
+    @property
+    def mean_price(self):
+        return (self.max_price + self.min_price) // 2
+
 
 class RawMaterial(Product):
     def __init__(self, name, volume, min_price, max_price):

@@ -6,11 +6,11 @@ class Transportation:
         self.constant = constant
         self.variable = variable
 
-    def get_price(self, volume):
-        return self.constant + (self.variable * math.sqrt(volume))
+    def get_price(self, volume, distance=1):
+        return self.constant + (self.variable * math.sqrt(volume * distance))
 
 
-class Buss(Transportation):
+class Bus(Transportation):
     def __init__(self):
         super().__init__(70_000, 0)
 

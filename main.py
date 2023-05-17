@@ -1,60 +1,41 @@
-from models.transportation import Transportation, Buss, AirPlane, Ship
+from models.building import Inventory
+from models.transportation import Transportation
 from models.products.raw import Product
-from models.products.middle_one import MiddleLevelOneList
-from models.products.middle_two import MiddleLevelTwoList
-from models.products.final import FinalList
-
-buss = Buss()
-ship = Ship()
-air_plane = AirPlane()
-
-print("MiddleLevelOneList")
-for product in MiddleLevelOneList:
-    print(product.value.name, product.value.get_max_price())
-
-print("MiddleLevelTwoList")
-for product in MiddleLevelTwoList:
-    print(product.value.name, product.value.get_max_price())
-
-print("Final")
-for product in FinalList:
-    print(product.value.name, product.value.get_max_price())
 
 
-def get_total_price(
-        transportation: Transportation, product: Product, number: int, month: int = 1
-):
-    total_volume = product.volume * number
-    return (
-            (1 + (0.025 * month))
-            * (
-                    transportation.get_price(total_volume)
-                    + (product.get_max_price() * number)
-                    + product.get_variable_price(number)
-            )
-            // number
-    )
+def calculate_profit(first_price, second_price):
+    return round((first_price - second_price) / second_price, 2)
 
 
 def get_price_with_transportation(
-        transportation: Transportation, product: Product, number: int
+        transportation: Transportation,
+        product: Product,
+        number: int,
+        distance: int = 1,
 ):
     total_volume = product.volume * number
     return (
-            transportation.get_price(total_volume)
+            transportation.get_price(total_volume, distance)
             + (product.get_max_price() * number)
             + product.get_variable_price(number)
     )
 
 
 def get_price_with_inventory(
-        month: int, transportation: Transportation, product: Product, number: int
+        transportation: Transportation,
+        product: Product,
+        number: int,
+        month: int = 1,
+        distance: int = 1,
 ):
     return (
-            1
-            + (0.025 * month)
-            * get_price_with_transportation(transportation, product, number)
-    ) / number
+            (1 + (Inventory.VARIABLE * month))
+            * get_price_with_transportation(transportation, product, number, distance)
+    ) // number
+
+
+def calculate_profit(first_price, second_price):
+    return (first_price - second_price) / second_price
 
 
 """
@@ -65,21 +46,14 @@ def get_price_with_inventory(
 
 
 def get_all_data(
-        transportation: Transportation, product: Product, number: int, month: int
+        transportation: Transportation,
+        product: Product,
+        number: int,
+        month: int
 ):
-    total_volume = product.volume * number
-    per_product_price = (
-            (1 + (0.025 * month))
-            * (
-                    transportation.get_price(total_volume)
-                    + (product.get_mean_price() * number)
-                    + product.get_variable_price(number)
-            )
-            // number
-    )
-    profit_percentage = (((product.min_price + product.max_price) / 2) - per_product_price) / (per_product_price)
-    return f"""profit percentage: {profit_percentage}    
-total profit: {((((product.min_price + product.max_price) / 2) - per_product_price) * number) // 1_000_000}    
+    per_product_price = get_price_with_inventory(transportation, product, number, month)
+    return f"""profit percentage: {calculate_profit(product.mean_price, per_product_price)}    
+total profit: {((product.mean_price - per_product_price) * number) // 1_000_000}    
 cash flow needed: {(per_product_price * number) // 1_000_000}    
     """
 
@@ -89,7 +63,7 @@ def get_all_data_max(
 ):
     total_volume = product.volume * number
     per_product_price = (
-            (1 + (0.025 * month))
+            (1 + (Inventory.VARIABLE * month))
             * (
                     transportation.get_price(total_volume)
                     + (product.get_max_price() * number)
@@ -109,7 +83,7 @@ def get_all_data_min(
 ):
     total_volume = product.volume * number
     per_product_price = (
-            (1 + (0.025 * month))
+            (1 + (Inventory.VARIABLE * month))
             * (
                     transportation.get_price(total_volume)
                     + (product.get_min_price() * number)
@@ -129,7 +103,7 @@ def get_all_data_mean_max(
 ):
     total_volume = product.volume * number
     per_product_price = (
-            (1 + (0.025 * month))
+            (1 + (Inventory.VARIABLE * month))
             * (
                     transportation.get_price(total_volume)
                     + (product.get_mean_price() * number)
@@ -139,7 +113,7 @@ def get_all_data_mean_max(
     )
     profit_percentage = (product.max_price - per_product_price) / per_product_price
     return profit_percentage, ((product.max_price - per_product_price) * number) // 1_000_000, (
-                per_product_price * number) // 1_000_000
+            per_product_price * number) // 1_000_000
 
 
 def get_all_data_max_mean(
@@ -147,7 +121,7 @@ def get_all_data_max_mean(
 ):
     total_volume = product.volume * number
     per_product_price = (
-            (1 + (0.025 * month))
+            (1 + (Inventory.VARIABLE * month))
             * (
                     transportation.get_price(total_volume)
                     + (product.get_max_price() * number)
@@ -157,7 +131,7 @@ def get_all_data_max_mean(
     )
     profit_percentage = (product.max_price - per_product_price) / per_product_price
     return profit_percentage, ((product.max_price - per_product_price) * number) // 1_000_000, (
-                per_product_price * number) // 1_000_000
+            per_product_price * number) // 1_000_000
 
 
 def get_all_data_min_max(
@@ -165,7 +139,7 @@ def get_all_data_min_max(
 ):
     total_volume = product.volume * number
     per_product_price = (
-            (1 + (0.025 * month))
+            (1 + (Inventory.VARIABLE * month))
             * (
                     transportation.get_price(total_volume)
                     + (product.get_min_price() * number)
@@ -175,7 +149,7 @@ def get_all_data_min_max(
     )
     profit_percentage = (product.max_price - per_product_price) / per_product_price
     return profit_percentage, ((product.max_price - per_product_price) * number) // 1_000_000, (
-                per_product_price * number) // 1_000_000
+            per_product_price * number) // 1_000_000
 
 
 def get_all_data_max_max(
@@ -183,7 +157,7 @@ def get_all_data_max_max(
 ):
     total_volume = product.volume * number
     per_product_price = (
-            (1 + (0.025 * month))
+            (1 + (Inventory.VARIABLE * month))
             * (
                     transportation.get_price(total_volume)
                     + (product.get_max_price() * number)
@@ -192,4 +166,5 @@ def get_all_data_max_max(
             // number
     )
     profit_percentage = (product.max_price - per_product_price) / per_product_price
-    return profit_percentage, ((product.max_price - per_product_price) * number) // 1_000_000, (per_product_price * number) // 1_000_000
+    return profit_percentage, ((product.max_price - per_product_price) * number) // 1_000_000, (
+            per_product_price * number) // 1_000_000
